@@ -1,1 +1,1 @@
-# My project for c50 course
+# My projects for c50 course
