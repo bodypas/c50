@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    background-color: white;
+    height: 80%;
+    
+}
+
+code {
+    white-space: pre;
+}
+
+h1 {
+    margin-top: 0px;
+    padding-top: 20px;
+}
+
+textarea {
+    height: 90vh;
+    width: 80%;
+}
+
+.main {
+    padding: 10px;
+}
+
+.search {
+    width: 100%;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.sidebar {
+    background-color: #f0f0f0;
+    height: 100vh;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-top: 5px;
+}
+
+#pagename {
+    height: 200px;
+}
+#id_pagename {
+    height: 200px;
+    background-color: blue;
+}
+
+.field {
+    color: blue;
+}
+
+.CharField {
+    color:blue;
+    background-color: blue;
+}
+
+.form-control {
+    width: 50%;
+}
+#floatingTextarea {
+    width: 50%;
+}
+

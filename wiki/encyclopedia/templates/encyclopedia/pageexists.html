@@ -1,0 +1,21 @@
+
+{% extends "encyclopedia/layout.html" %}
+
+
+{% block title %}
+    Error
+{% endblock %}
+
+
+{% block body %}
+<h1>
+    Error: Page with {{ entry }} title is already exists. Please try again with different title!
+</h1>
+
+<h3>
+    <a href="{% url 'wiki:new' %}">Click</a> here to go back to create new article.<br>
+
+
+    <a href="{% url 'wiki:index' %}">Main page</a>
+</h3>
+{% endblock %}    

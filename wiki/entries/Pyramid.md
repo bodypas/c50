@@ -1,0 +1,5 @@
+# Pyramid
+
+
+
+A **pyramid** is a structure whose outer surfaces are triangular and converge to a single step at the top, making the shape roughly a pyramid in the geometric sense. The base of a pyramid can be trilateral, quadrilateral, or of any polygon shape. As such, a pyramid has at least three outer triangular surfaces (at least four faces including the base). The square pyramid, with a square base and four triangular outer surfaces, is a common version.

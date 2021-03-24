@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+
+
+{% block title %}
+
+{{ title | safe }}
+
+{% endblock %}
+
+{% block body %}
+
+
+{{ content | safe }}
+<br>
+<div style="font-style: italic; font-size: smaller;">
+<a href="{% url 'wiki:edit' title %}">Click</a> here to edit this article.
+</div>
+{% endblock %}
