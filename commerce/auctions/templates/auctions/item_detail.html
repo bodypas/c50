@@ -1,0 +1,112 @@
+{% extends "auctions/layout.html" %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+
+{% block body %}  
+  
+ 
+  
+{% if item_detail.auction_end and not user.watchlist.filter %}
+<div class="alert alert-success" role="alert">
+    This listing is no longer available! <strong>Winner: </strong>{{ item_detail.bid.last.bywhom.username }}
+</div>
+
+{% endif %}    
+
+{% if item_detail.auction_end and user.watchlist.filter %}
+<div class="alert alert-info" role="alert">
+    This listing is no longer available! <strong>Winner: </strong>{{ item_detail.bid.last.bywhom.username }} 
+    
+    
+</div>
+
+
+{% endif %} 
+
+{% if user.username == item_detail.person.username and not item_detail.auction_end %}
+    <form method="POST" action= "{% url 'auction_close' item_detail.id %}">
+        {% csrf_token %}
+        <input class="btn btn-warning" type="submit" name="button" value="Close">
+    </form>
+{% endif %}
+
+ 
+    <form action="{% url 'item_detail' item_detail.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" name="button" value="Watchlist" class="btn btn-success"> Watchlist</button>
+       
+    </form>  
+
+    
+    
+    <form  action="{% url 'item_detail' item_detail.id %}" method="POST">   
+        {% csrf_token %}
+        <h2>Item details  </h2>
+            <ul>
+                <li>Name: {{ item_detail.title }}</li>
+                <li>Description: {{ item_detail.description }}</li>
+                <li>Category: {{ item_detail.category }}</li>
+                <li><img src="{{ item_detail.image.url }}" alt="image" style="width: 400px; height: 400px"></li>
+                <li>Price: ${{ item_detail.price }}</li>
+            </ul>
+    
+    
+        
+            
+           
+            {% if not item_detail.auction_end %}    
+        <div class="form-group">
+            <label for="bid">There are currently {{ item_detail.bid.count }} bids. At the moment <strong>{{ item_detail.bid.last.bywhom.username }}</strong> is the winner by making an offer of<strong> $ {{ item_detail.price }}</strong>.</label>
+          </div>
+          <div class="form-group">
+        {{ bid_form  }}$  
+        <input type="submit" value="Place Bid">   <span class="badge bg-warning text-dark">{{ message }}</span>
+    </form>
+    
+    
+
+
+    <form action="{% url 'comments'  item_detail.id %}" method="POST">
+      {% csrf_token %}
+      
+      {{ comments_form.as_p }}
+      <p></p>
+      
+      <input type="submit" value="Create Comment" class="btn btn-secondary btn-lg">
+    </form>
+    {% endif %}
+    
+  
+<div class="container mt-5">
+    <div class="d-flex justify-content-left row">
+        <div class="col-md-8">
+            <div class="d-flex flex-column comment-section">
+                <div class="bg-white p-2">
+                {% for comment in item_detail.comments.all %}
+                    <div class="d-flex flex-row user-info">
+                        
+                        <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">{{ comment.user }}</span><span class="date text-black-50">Shared publicly - {{ comment.time }}</span></div>
+                    </div>
+                    <div class="mt-2">
+                    
+                        <p class="comment-text">{{ comment.text }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            </div>                
+        </div>        
+    </div>
+</div>
+    <h2>Back to <a href="{% url 'index' %} ">Active Listings</a></h2>
+     
+
+{% endblock %}
+
+
+
+
+<form action="{% url 'item_detail' item_detail.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" name="button" value="Watchlist" class="btn btn-success">Delete from Watchlist</button>
+</form>   
