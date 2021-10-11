@@ -1,0 +1,44 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>{{ category }}</h2>
+    
+{% if  item_detail.count == 0 %}
+    <p>There are no lots in this category</p>
+{% endif %}
+
+{% if  item_detail.count >= 1 %}
+
+There are currently {{ item_detail.count }} items is this category.
+<div class="container overflow-hidden">
+       
+        <div class="row gy-5">
+            {% for actitem in item_detail %}
+            {% if actitem.auction_end %}
+          <div class="col-6">
+            
+            <div class="p-3 border bg-light">
+            <h4 style="color:red">The lot is closed</h4>  
+            <div><img src="{{ actitem.image.url }}" alt="image" style="max-width: 100%; height: 300px"></div>
+            <div>{{ actitem.title }}: {{ actitem.price }}$ </div>
+            <div><a href="{% url 'item_detail' actitem.id %}">View</a></div></div>
+            
+          </div>
+          {% endif %}
+
+          {% if not actitem.auction_end %}
+          <div class="col-6">
+             
+            <div class="p-3 border bg-light">
+            <h4 style="color:green">The lot is available</h4>
+            <div><img src="{{ actitem.image.url }}" alt="image" style="max-width: 100%; height: 300px"></div>
+            <div>{{ actitem.title }}: {{ actitem.price }}$ </div>
+            <div><a href="{% url 'item_detail' actitem.id %}">View</a></div></div>
+            
+          </div>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+
+
+          {% endblock %}
