@@ -1,0 +1,23 @@
+{% extends "auctions/layout.html" %}
+{% load widget_tweaks %}
+{% block body %}
+{% load crispy_forms_tags %}
+    <h2>Active Listings</h2>
+
+  
+      
+        
+    <div >
+        <form action="{% url 'create'  %}" method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}          
+            
+            
+            {{new_page|crispy}}
+            
+        <div class="button">    
+            <input class="btn btn-primary btn-lg" type="submit" style="margin-top: 20px;">
+        </div>    
+        </form> 
+</div>
+
+{% endblock %}
