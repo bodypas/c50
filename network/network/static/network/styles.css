@@ -1,0 +1,77 @@
+.tweet-container {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.tweet {
+  max-width: 100%; /* fix the width */
+  background-color: #2e2e2e;
+  color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+  margin: 40px 0; /* Add top and bottom margin */
+}
+
+
+.tweet-header {
+  margin-bottom: 30px; /* Increase margin-bottom */
+}
+
+.tweet-author-name {
+  font-size: 28px; /* Larger font-size */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.tweet-footer {
+  margin-top: 30px; /* Increase margin-top */
+}
+
+.tweet-date {
+  font-size: 22px; /* Larger font-size */
+  color: #848484;
+}
+
+.tweet-content {
+  font-size: 24px; /* Larger font-size */
+  line-height: 1.5;
+  text-align: justify;
+}
+
+#new-post-form {
+  width: 500px;
+  margin: 50px auto;
+  background-color: #333;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #000;
+  color: #fff;
+}
+
+#new-post-form input[type="text"], #new-post-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #444;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+}
+
+#new-post-input {
+  width: 100%;
+  padding: 10px;
+  background-color: #555;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#new-post-input:hover {
+  background-color: #666;
+}
+

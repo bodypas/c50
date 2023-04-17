@@ -1,0 +1,55 @@
+<div>
+    {% for post in page_obj %}
+    <div class="tweet-container">
+        <div class="tweet" data-post-id="{{ post.id }}">
+          <div class="tweet-header">
+            <span class="tweet-author-name"><a href="{% url 'profile' username=post.user %}">
+                @{{ post.user }} </a></span>
+          </div>
+          <p class="tweet-content">{{ post.content }}</p>
+          <div class="tweet-footer">
+            {% if post.created_at != post.updated_at %}
+              <span class="tweet-date">updated at: {{ post.updated_at }}</span>
+              {% else %}
+                <span class="tweet-date">{{ post.created_at }}</span>
+              {% endif %}
+            {% if post.user == user %}
+            <button class="btn  btn-outline-primary" id="edit-button" onclick="editPost(this)">Edit</button>
+            {% endif %}
+            <button type="button" class="btn btn-outline-danger like-button" data-post-id="{{ post.id }}" data-page="{{ page }}" onclick="likePost(this)" id="like-button">
+              <span class="like"></span>
+              <span class="heart">❤️</span>
+              <span class="like-count badge badge-danger">{{ post.likes_count }}</span>
+              <span class="like-text"></span>
+              
+              
+            </button>
+            
+            
+          </div>
+        </div>
+      </div>
+    
+    
+    {% endfor %}
+    </div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">First</a></li>  
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+        {% endif %}
+        
+    </ul>
+    <ul class="pagination justify-content-center">
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+    </ul>
+</nav>
+
